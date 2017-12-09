@@ -52,8 +52,13 @@ public class ContratoREST {
    
      /**
      * Crear una contrato
-     * @param contrato
+     * @param estadoContrato
+     * @param numeroContrato
+     * @param valorContrato
+     * @param in
+     * @param info
      * @return 
+     * @throws java.io.IOException 
      */
     /*@POST
     public Response create(Contratos contrato){

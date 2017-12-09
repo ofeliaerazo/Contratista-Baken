@@ -20,6 +20,6 @@ public class AppConfig extends ResourceConfig{
     public AppConfig() {
          packages("co.edu.sena.cbi.rest.services;co.edu.sena.cbi.rest.auth");
         register(RolesAllowedDynamicFeature.class);
-        register(MultiPartFeature.class);
+        register(MultiPartFeature.class);//Para subir imagenes se necesita
     }
 }
