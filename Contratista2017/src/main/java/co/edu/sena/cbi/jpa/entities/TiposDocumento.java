@@ -27,11 +27,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "tipos_documento")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "TiposDocumento.findAll", query = "SELECT t FROM TiposDocumento t")
-    , @NamedQuery(name = "TiposDocumento.findById", query = "SELECT t FROM TiposDocumento t WHERE t.id = :id")
-    , @NamedQuery(name = "TiposDocumento.findByDescripcion", query = "SELECT t FROM TiposDocumento t WHERE t.descripcion = :descripcion")
-    , @NamedQuery(name = "TiposDocumento.findByTiposDocumentocol", query = "SELECT t FROM TiposDocumento t WHERE t.tiposDocumentocol = :tiposDocumentocol")})
 public class TiposDocumento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -97,25 +92,7 @@ public class TiposDocumento implements Serializable {
         this.usuariosList = usuariosList;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TiposDocumento)) {
-            return false;
-        }
-        TiposDocumento other = (TiposDocumento) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {

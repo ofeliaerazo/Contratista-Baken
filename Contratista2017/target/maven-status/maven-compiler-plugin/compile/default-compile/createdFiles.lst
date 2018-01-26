@@ -43,15 +43,15 @@ co/edu/sena/cbi/jpa/sessions/RolesFacade.class
 co/edu/sena/cbi/jpa/entities/TiposDocumento_.class
 co/edu/sena/cbi/jpa/sessions/PolizasFacade.class
 co/edu/sena/cbi/jpa/entities/Departamentos.class
-co/edu/sena/cbi/rest/services/NewCrossOriginResourceSharingFilter.class
 co/edu/sena/cbi/rest/auth/SecurityFilter$Authorizer.class
+co/edu/sena/cbi/rest/services/NewCrossOriginResourceSharingFilter.class
 co/edu/sena/cbi/rest/services/PensionREST.class
 co/edu/sena/cbi/rest/services/ArlREST.class
 co/edu/sena/cbi/jpa/sessions/ArlFacade.class
 co/edu/sena/cbi/rest/auth/Token.class
 co/edu/sena/cbi/jpa/entities/Pension.class
-co/edu/sena/cbi/rest/services/RolREST.class
 co/edu/sena/cbi/rest/services/CiudadesREST.class
+co/edu/sena/cbi/rest/services/RolREST.class
 co/edu/sena/cbi/rest/auth/SecurityFilter$User.class
 co/edu/sena/cbi/jpa/entities/Contratos.class
 co/edu/sena/cbi/jpa/entities/Roles.class
