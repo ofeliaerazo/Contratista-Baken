@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "tipos_documento")
 @XmlRootElement
+
 public class TiposDocumento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,9 +42,7 @@ public class TiposDocumento implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "descripcion")
     private String descripcion;
-    @Size(max = 45)
-    @Column(name = "tipos_documentocol")
-    private String tiposDocumentocol;
+    
     @OneToMany(mappedBy = "tiposDocumentoId")
     private List<Usuarios> usuariosList;
 
@@ -75,13 +74,7 @@ public class TiposDocumento implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getTiposDocumentocol() {
-        return tiposDocumentocol;
-    }
-
-    public void setTiposDocumentocol(String tiposDocumentocol) {
-        this.tiposDocumentocol = tiposDocumentocol;
-    }
+    
 
     @XmlTransient
     public List<Usuarios> getUsuariosList() {
@@ -92,7 +85,25 @@ public class TiposDocumento implements Serializable {
         this.usuariosList = usuariosList;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof TiposDocumento)) {
+            return false;
+        }
+        TiposDocumento other = (TiposDocumento) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public String toString() {
