@@ -14,14 +14,11 @@ import java.text.ParseException;
 import java.util.Arrays;
 import org.joda.time.DateTime;
 
-/**
- *
- * @author ruber19
- */
+
 public final class AuthUtils {
 
     private static final JWSHeader JWT_HEADER = new JWSHeader(JWSAlgorithm.HS256);
-    private static final String TOKEN_SECRET = "adsilomejor**";
+    private static final String TOKEN_SECRET = "cbi-Palmira**";
     public static final String AUTH_HEADER_KEY = "Authorization";
 
     public static String getSubject(String authHeader) throws ParseException, JOSEException {

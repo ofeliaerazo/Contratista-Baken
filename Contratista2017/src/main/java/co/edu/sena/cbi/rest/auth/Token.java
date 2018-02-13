@@ -2,10 +2,7 @@ package co.edu.sena.cbi.rest.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- *
- * @author ruber19
- */
+
 public class Token {
 
     String token;

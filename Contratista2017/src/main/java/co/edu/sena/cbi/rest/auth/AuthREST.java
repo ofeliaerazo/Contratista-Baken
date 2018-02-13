@@ -17,10 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-/**
- *
- * @author ruber19
- */
+
 @Path("auth")
 public class AuthREST {
 
@@ -48,9 +45,13 @@ public class AuthREST {
         user.setPassword(DigestUtil.cifrarPassword(user.getPassword()));
         if (foundUser == null) {
             return Response.status(Status.UNAUTHORIZED).entity(gson.toJson(NOT_FOUND_MSG)).build();
-        } 
-        
-        
+        } else if (user.getPassword().equals(foundUser.getPassword())) {
+                System.out.println("ok");
+                final Token token = AuthUtils.createToken(request.getRemoteHost(), foundUser);
+                System.out.println(gson.toJson(token));
+                return Response.ok().entity(gson.toJson(token)).build();
+            
+        }
         return Response.status(Status.UNAUTHORIZED).entity(gson.toJson(LOGING_ERROR_MSG)).build();
     }
 }

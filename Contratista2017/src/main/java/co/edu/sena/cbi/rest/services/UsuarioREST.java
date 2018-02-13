@@ -32,7 +32,7 @@ public class UsuarioREST {
             @QueryParam("sexo") String sexo,
             @QueryParam("activo") Boolean activo,
             @QueryParam("numDocumento") String numDocumento,
-            @QueryParam("email_institucemailInstitucional") String emailInstitucional,
+            @QueryParam("email_institucional") String emailInstitucional,
             @QueryParam("ciudadesId") Integer ciudadesId,
             @QueryParam("nombresCompletos") String nombresCompletos,
             @QueryParam("departamentosId") Integer departamentosId,
@@ -112,8 +112,11 @@ public class UsuarioREST {
     public Response edit(@PathParam("id") Integer id, Usuarios usuario) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
+       
 
         try {
+              usuario.setPassword(DigestUtil.cifrarPassword(usuario.getPassword()));
+
             usuarioEJB.edit(usuario);
             return Response.status(Response.Status.CREATED)
                     .entity(gson.toJson("El usuario se actualizo correctamente"))
