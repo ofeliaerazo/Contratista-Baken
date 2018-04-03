@@ -77,7 +77,7 @@ public class UsuarioREST {
                 if (usuarioEJB.findUsuarioByNumDocumento(usuario.getNumDocumento()) == null) {
                     usuario.setPassword(DigestUtil.cifrarPassword(usuario.getPassword()));
 
-
+                    usuario.setActivo(true);
                     usuarioEJB.create(usuario);
                     return Response.status(Response.Status.CREATED)
                             .entity(gson.toJson("El usuario se registro correctamente"))

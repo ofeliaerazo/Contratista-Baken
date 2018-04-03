@@ -69,9 +69,8 @@ public class Contratos implements Serializable {
     private Date fechaTerminacionAdicional;
     @Column(name = "valor_adicion")
     private Integer valorAdicion;
-    @Size(max = 15)
     @Column(name = "estado_contrato")
-    private String estadoContrato;
+    private Boolean estadoContrato;
     @Size(max = 250)
     @Column(name = "archivo_adjunto")
     private String archivoAdjunto;
@@ -162,11 +161,11 @@ public class Contratos implements Serializable {
         this.valorAdicion = valorAdicion;
     }
 
-    public String getEstadoContrato() {
+    public Boolean getEstadoContrato() {
         return estadoContrato;
     }
 
-    public void setEstadoContrato(String estadoContrato) {
+    public void setEstadoContrato(Boolean estadoContrato) {
         this.estadoContrato = estadoContrato;
     }
 

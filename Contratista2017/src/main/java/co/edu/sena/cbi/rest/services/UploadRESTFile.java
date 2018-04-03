@@ -28,8 +28,8 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 public class UploadRESTFile {
     
     //Se debe cambiar por la URL donde se quiera guardar la imagen
-    private static final String UPLOAD_FOLDER = "/home/Videos/CONTRATISTA7/Fronte-contratista/client/assets";
-    private static final String UPLOAD_FOLDER_USUARIOS = "/home/Videos/CONTRATISTA7/Fronte-contratista/client/assets/";
+    private static final String UPLOAD_FOLDER = "/home/ofelia/Descargas/CONTRATISTAS/ContratistaFronten/client/assets";
+    private static final String UPLOAD_FOLDER_USUARIOS = "/home/ofelia/Descargas/CONTRATISTAS/ContratistaFronten/client/assets/";
     
     @EJB
     private ContratosFacade contratosEJB;

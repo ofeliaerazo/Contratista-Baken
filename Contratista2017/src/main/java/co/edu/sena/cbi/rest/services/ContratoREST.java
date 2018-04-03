@@ -1,6 +1,7 @@
 package co.edu.sena.cbi.rest.services;
 
 import co.edu.sena.cbi.jpa.entities.Contratos;
+import co.edu.sena.cbi.jpa.entities.Usuarios;
 import co.edu.sena.cbi.jpa.sessions.ContratosFacade;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -34,8 +36,7 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 public class ContratoREST {
     @EJB
     private ContratosFacade contratoEJB;
-    
-    private static final String UPLOAD_FOLDER = "/home/adsi1261718/OFELIA/CONTRATISTAS/ContratistaFronten/client/assets/imagenesContratos/";
+        private static final String UPLOAD_FOLDER =  "/home/ofelia/Descargas/CONTRATISTAS/ContratistaFronten/client/assets/contratos/";
     
     @GET
     public List<Contratos> findAll() {
@@ -68,18 +69,17 @@ public class ContratoREST {
         return Response.status(Response.Status.CREATED).entity(gson.toJson("El contrato se creó correctamente!")).build();     
                     
     }*/
-    
-    
-    
+
     @POST
     @Path("crearContrato")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(@FormDataParam("estadoContrato") String estadoContrato,
+    public Response uploadFile(
             @FormDataParam("numeroContrato") Integer numeroContrato,
             @FormDataParam("valorContrato") Integer valorContrato,
+            @FormDataParam("idUser") Integer idUser,
             @FormDataParam("file") InputStream in,
             @FormDataParam("file") FormDataContentDisposition info) throws IOException {
-        
+
         File upload = new File(UPLOAD_FOLDER.concat(info.getFileName()));
 
         try {
@@ -88,8 +88,16 @@ public class ContratoREST {
                 return Response.status(Response.Status.CONFLICT).entity(message).build();
             } else {
                 Files.copy(in, upload.toPath());
+                List<Contratos> contratos = contratoEJB.findContratos(idUser);
+                if (contratos.size() > 0) {
+                    for (int i = 0; i < contratos.size(); i++) {
+                        contratos.get(i).setEstadoContrato(false);
+                        contratoEJB.edit(contratos.get(i));
+                    }
+                }
                 Contratos contrato = new Contratos();
-                contrato.setEstadoContrato(estadoContrato);
+                contrato.setEstadoContrato(true);
+                contrato.setContratistaId(new Usuarios(idUser));
                 contrato.setNumeroContrato(numeroContrato);
                 contrato.setValorContrato(valorContrato);
                 contrato.setArchivoAdjunto(upload.getName());
@@ -101,7 +109,7 @@ public class ContratoREST {
         }
 
     }
-    
+
     /**
      * Edita una contrato
      * @param id
@@ -119,5 +127,11 @@ public class ContratoREST {
         } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(gson.toJson("Error al actualizar el contrato!.")).build();
         }
+    }
+    
+    @GET
+    @Path("find")
+    public Contratos getContratoByUsuario(@QueryParam("idUser") Integer idUser){
+        return contratoEJB.findContratoByUsuario(idUser);
     }
 }
